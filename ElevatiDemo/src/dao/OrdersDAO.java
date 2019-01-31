@@ -26,7 +26,7 @@ public class OrdersDAO {
 				ps.setLong(1,omd.getOrderID()); 
 				ps.setString(2, omd.getTitle());
 				ps.setString(3, omd.getSku());
-				ps.setString(4, omd.getPrice());
+				ps.setFloat(4, omd.getPrice());
 				//ps.setBoolean(5, omd.isProduct_exists());
 			ps.executeUpdate();
 			
@@ -42,7 +42,7 @@ public class OrdersDAO {
 				om.setOrderID(rs.getLong("OrderID"));
 				om.setTitle(rs.getString("title"));
 				om.setSku(rs.getString("sku"));
-				om.setPrice(rs.getString("price"));
+				om.setPrice(rs.getFloat("price"));
 				//om.setProduct_exists(rs.getBoolean("product_exists"));
 				orders.add(om);
 			}

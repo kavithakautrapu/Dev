@@ -1,0 +1,4 @@
+//Sqls to be run before running the application.
+
+CREATE DATABASE ElevatiDemo;
+CREATE TABLE ElevatiDemo.orders(OrderID long, Title varchar(50), SKU varchar(50), Price float);

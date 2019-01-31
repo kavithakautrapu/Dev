@@ -1,11 +1,14 @@
-package testJunit;
 
 import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import org.apache.http.client.ClientProtocolException;
 
@@ -14,18 +17,35 @@ import model.OrdersModel;
 
 public class Test {
 	 
-	   public void testCase() throws ClassNotFoundException, SQLException {
+	   public void testCase() throws ClassNotFoundException, SQLException, IOException {
 		   OrdersDAO od = new OrdersDAO();
 		   OrdersModel omd = new OrdersModel();
-			
-			 omd.setOrderID(1558721222);
-			 omd.setTitle("650C 45mm Micro Wheelset");
-			 omd.setSku("Orange Wheels 650c");
-			 omd.setPrice(130);
-			 
-			 od.insertOrders(omd);
-			 
-			 System.out.println("Test case successful");		
+
+		   //FileReader fr = new FileReader("C:\\TestSpring\\ElevatiDemo\\WebContent\\WEB-INF\\SuccessTestCase.txt");
+		   FileReader fr = new FileReader("C:\\TestSpring\\ElevatiDemo\\WebContent\\WEB-INF\\FailureTestCase.txt");
+		   BufferedReader br = new BufferedReader(fr);
+		   String t="";
+		   ArrayList valuesFromFile = new ArrayList();
+		   int count = 0;
+				   
+		   		while((t=br.readLine())!=null) {
+					valuesFromFile.add(t);
+					System.out.println(valuesFromFile);  
+					   
+				   }
+		   			 omd.setOrderID(Long.parseLong((String) valuesFromFile.get(0)));
+					 omd.setTitle((String)valuesFromFile.get(1));
+					 omd.setSku((String)valuesFromFile.get(2));
+					 omd.setPrice(Float.parseFloat((String) valuesFromFile.get(3)));
+					
+					try{
+						br.close();
+						fr.close();
+						br=null;fr=null;
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+			 System.out.println("Test case executed");		
 				
 			}
  public static void main(String[] args) throws ClientProtocolException, IOException {
@@ -43,6 +63,7 @@ public class Test {
 	}
 	
  }
+ 
 
 }
 

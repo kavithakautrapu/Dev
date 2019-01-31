@@ -54,7 +54,7 @@ public class CallAPI {
 				  
 				  om.setOrderID((long) order_data.get("id"));
 				  om.setTitle((String)order_data.get("title"));
-				  om.setPrice((String)order_data.get("price"));
+				  om.setPrice((float)order_data.get("price"));
 				  om.setSku((String)order_data.get("sku"));			  
 				  //om.setProduct_exists((boolean)order_data.get("product_exists"));		
 				  break;

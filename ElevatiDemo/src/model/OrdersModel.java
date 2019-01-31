@@ -4,7 +4,7 @@ public class OrdersModel {
 	private long orderID;
 	private String title="";
 	private String sku="";
-	private String price="";
+	private float price;
 	//private boolean product_exists=true;
 	
 	public long getOrderID() {
@@ -25,10 +25,10 @@ public class OrdersModel {
 	public void setSku(String sku) {
 		this.sku = sku;
 	}
-	public String getPrice() {
+	public float getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 	/*public boolean isProduct_exists() {

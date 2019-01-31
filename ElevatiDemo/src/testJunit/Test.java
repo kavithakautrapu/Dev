@@ -1,31 +1,50 @@
-package testJunit;
+package testUnit;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import org.apache.http.HttpResponse;
+import java.sql.SQLException;
+
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+
+import dao.OrdersDAO;
+import model.OrdersModel;
 
 public class Test {
+	 
+	   public void testCase() throws ClassNotFoundException, SQLException {
+		   OrdersDAO od = new OrdersDAO();
+		   OrdersModel omd = new OrdersModel();
+			
+			 omd.setOrderID(1558721222);
+			 omd.setTitle("650C 45mm Micro Wheelset");
+			 omd.setSku("Orange Wheels 650c");
+			 omd.setPrice(130);
+			 
+			 od.insertOrders(omd);
+			 
+			 System.out.println("Test case successful");		
+				
+			}
  public static void main(String[] args) throws ClientProtocolException, IOException {
-	  HttpClient client = new DefaultHttpClient();
-	  HttpGet request = new HttpGet("http://elevatitech.com/api/test/shopify/orders");
-	  HttpResponse response = client.execute(request);
-	  BufferedReader rd = new BufferedReader (new InputStreamReader(response.getEntity().getContent()));
-	  String line = "";
-		  while ((line = rd.readLine()) != null) {
-		    System.out.println(line);
-		  }
-	assertEquals("HTTP/1.1 200 OK",(response.containsHeader("HTTP/1.1 200 OK")));
-	  
- 	}
- }
-
+	 Test t = new Test();
+	 try {
+		 
+		t.testCase();
+		
+	} catch (ClassNotFoundException e) {
+		e.printStackTrace();
+				
+	} catch (SQLException e) {
+		e.printStackTrace();
+			
+	}
 	
+ }
+ 
+
+}
 
 
